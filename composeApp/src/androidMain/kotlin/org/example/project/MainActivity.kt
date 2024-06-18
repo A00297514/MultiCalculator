@@ -35,8 +35,8 @@ class MainActivity : ComponentActivity() {
 
 @Preview
 @Composable
-fun AppAndroidPreview() {
-    App()
+fun App() {
+    CalcView()
 }
 
 @Composable
@@ -54,11 +54,12 @@ fun CalcView(){
         }
         Row {
             Column {
-                CalcRow(display = displayText, startNum = 1, numButtons = 3)
-                CalcRow(display = displayText, startNum = 4, numButtons = 3)
                 CalcRow(display = displayText, startNum = 7, numButtons = 3)
+                CalcRow(display = displayText, startNum = 4, numButtons = 3)
+                CalcRow(display = displayText, startNum = 1, numButtons = 3)
                 Row {
                     CalcNumericButton(number = 0, display = displayText)
+                    CalcEqualsButton(display = displayText)
                 }
             }
             Column {
@@ -66,13 +67,12 @@ fun CalcView(){
                 CalcOperationButton(operation = "-", display = displayText)
                 CalcOperationButton(operation = "*", display = displayText)
                 CalcOperationButton(operation = "/", display = displayText)
-                CalcEqualsButton(display = displayText)
             }
         }
-        Row {
-            CalcNumericButton(number = 0, display = displayText)
-            CalcEqualsButton(display = displayText)
-        }
+//        Row {
+//            CalcNumericButton(number = 0, display = displayText)
+//            CalcEqualsButton(display = displayText)
+//        }
     }
 }
 
