@@ -46,7 +46,6 @@ fun CalcRow(display: MutableState<String>, startNum: Int, numButtons: Int){
             CalcNumericButton(number = num, display = display)
         }
     }
-
 }
 
 @Composable
