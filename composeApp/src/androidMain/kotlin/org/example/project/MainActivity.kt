@@ -69,6 +69,10 @@ fun CalcView(){
                 CalcEqualsButton(display = displayText)
             }
         }
+        Row {
+            CalcNumericButton(number = 0, display = displayText)
+            CalcEqualsButton(display = displayText)
+        }
     }
 
 }
