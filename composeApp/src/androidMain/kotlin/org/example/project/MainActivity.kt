@@ -53,7 +53,21 @@ fun CalcView(){
             CalcDisplay(display = displayText)
         }
         Row {
-            // Additional buttons or components can be added here in future
+            Column {
+                CalcRow(display = displayText, startNum = 1, numButtons = 3)
+                CalcRow(display = displayText, startNum = 4, numButtons = 3)
+                CalcRow(display = displayText, startNum = 7, numButtons = 3)
+                Row {
+                    CalcNumericButton(number = 0, display = displayText)
+                }
+            }
+            Column {
+                CalcOperationButton(operation = "+", display = displayText)
+                CalcOperationButton(operation = "-", display = displayText)
+                CalcOperationButton(operation = "*", display = displayText)
+                CalcOperationButton(operation = "/", display = displayText)
+                CalcEqualsButton(display = displayText)
+            }
         }
     }
 
