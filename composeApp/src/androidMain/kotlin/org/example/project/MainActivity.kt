@@ -59,7 +59,6 @@ fun CalcOperationButton(operation: String, display: MutableState<String>){
     ){
         Text(operation)
     }
-
 }
 
 @Composable
