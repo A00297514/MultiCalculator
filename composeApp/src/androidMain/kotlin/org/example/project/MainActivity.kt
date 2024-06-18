@@ -53,7 +53,6 @@ fun CalcNumericButton(number: Int, display: MutableState<String>){
     ){
         Text(number.toString())
     }
-
 }
 
 @Composable
