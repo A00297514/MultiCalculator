@@ -74,7 +74,6 @@ fun CalcView(){
             CalcEqualsButton(display = displayText)
         }
     }
-
 }
 
 @Composable
