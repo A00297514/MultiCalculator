@@ -113,14 +113,14 @@ fun CalcView(){
                 CalcRow(onPress = { number -> numberPress(number) }, startNum = 1, numButtons = 3)
                 Row {
                     CalcNumericButton(number = 0, onPress = { number -> numberPress(number) })
-                    CalcEqualsButton(onpress = ::equalsPress)
+                    CalcEqualsButton(onpress = { equalsPress() })
                 }
             }
             Column {
-                CalcOperationButton(operationText = "+", onPress = ::operationPress)
-                CalcOperationButton(operationText = "-", onPress = ::operationPress)
-                CalcOperationButton(operationText = "*", onPress = ::operationPress)
-                CalcOperationButton(operationText = "/", onPress = ::operationPress)
+                CalcOperationButton(operationText = "+", onPress = { op -> operationPress(op) })
+                CalcOperationButton(operationText = "-", onPress = { op -> operationPress(op) })
+                CalcOperationButton(operationText = "*", onPress = { op -> operationPress(op) })
+                CalcOperationButton(operationText = "/", onPress = { op -> operationPress(op) })
             }
         }
 //        Row {
@@ -135,7 +135,7 @@ fun CalcRow(onPress: (number: Int) -> Unit, startNum: Int, numButtons: Int){
     val endNum = startNum + numButtons
     Row (modifier = Modifier.padding(0.dp)){
         for (num in startNum until endNum) {
-            CalcNumericButton(onPress = onPress, number = num)
+            CalcNumericButton(onPress = { number -> onPress(number) }, number = num)
         }
     }
 }
