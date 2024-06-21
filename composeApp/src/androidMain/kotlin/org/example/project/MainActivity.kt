@@ -43,6 +43,12 @@ fun App() {
 fun CalcView(){
     val displayText = remember { mutableStateOf("0") }
 
+    // State variables with default values using rememberSaveable
+    val leftNumber = rememberSaveable { mutableStateOf(0) }
+    val rightNumber = rememberSaveable { mutableStateOf(0) }
+    val operation = rememberSaveable { mutableStateOf("") }
+    val complete = rememberSaveable { mutableStateOf(false) }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
