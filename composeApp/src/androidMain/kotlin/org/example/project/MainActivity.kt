@@ -18,6 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -42,12 +43,59 @@ fun App() {
 @Composable
 fun CalcView(){
     val displayText = remember { mutableStateOf("0") }
-
     // State variables with default values using rememberSaveable
     val leftNumber = rememberSaveable { mutableStateOf(0) }
     val rightNumber = rememberSaveable { mutableStateOf(0) }
     val operation = rememberSaveable { mutableStateOf("") }
     val complete = rememberSaveable { mutableStateOf(false) }
+
+    if (complete.value && operation.value.isNotEmpty()) {
+        // Create a mutable variable named answer and assign a value of 0
+        var answer = 0
+        // When statement using the operation variable
+        when (operation.value) {
+            "+" -> answer = leftNumber.value + rightNumber.value
+            "-" -> answer = leftNumber.value - rightNumber.value
+            "*" -> answer = leftNumber.value * rightNumber.value
+            "/" -> if (rightNumber.value != 0) answer = leftNumber.value / rightNumber.value
+        }
+        displayText.value = answer.toString()
+    }
+
+    else if (operation.value.isNotEmpty() && !complete.value) {
+        leftNumber.value = displayText.value.toInt()
+        displayText.value = "0"
+        complete.value = true
+        displayText.value = rightNumber.value.toString()
+    }
+
+    else {
+        displayText.value = leftNumber.value.toString()
+    }
+
+    fun numberPress(buttonNo: Int) {
+        if (complete.value) {
+            leftNumber.value = 0
+            rightNumber.value = 0
+            operation.value = ""
+            complete.value = false
+        }
+        if (operation.value.isNotBlank() && !complete.value) {
+            rightNumber.value = rightNumber.value * 10 + buttonNo
+        } else if (operation.value.isBlank() && !complete.value) {
+            leftNumber.value = leftNumber.value * 10 + buttonNo
+        }
+    }
+
+    fun operationPress(oper: String) {
+        if (!complete.value) {
+            operation.value = oper
+        }
+    }
+
+    fun equalsPress(){
+        complete.value = true
+    }
 
     Column(
         modifier = Modifier
